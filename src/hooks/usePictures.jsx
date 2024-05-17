@@ -3,7 +3,7 @@ import GlobalApi from '@/utils/GlobalApi';
 import React, { useEffect, useState } from 'react'
 
 const usePictures = () => {
-
+ 
     const [picturesList, setPicturesList] = useState([]);
 
     useEffect(() => {

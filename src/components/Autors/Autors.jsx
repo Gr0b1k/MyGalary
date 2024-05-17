@@ -1,7 +1,11 @@
 import React from 'react'
 import AutorCard from '../AutorCard/AutorCard'
+import useAutors from '@/hooks/useAutors';
 
 const Autors = () => {
+
+
+
   return (
     <section className='w-full py-10' id='autors1'>
         <div className="container mx-auto">

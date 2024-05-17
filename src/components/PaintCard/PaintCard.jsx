@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 const PaintCard = () => {
-
+ 
     const getPictures = usePictures();
 
   return (
@@ -13,7 +13,7 @@ const PaintCard = () => {
             return (
                 <article key={index} className="w-full h-full rounded-md p-3 bg-white">
                 <div className="relative w-full h-[230px] rounded-md overflow-hidden mb-3">
-                    <Image loading='lazy' src={process.env.NEXT_PUBLIC_STRAPI_API_URL + item.attributes?.image?.data.attributes?.url} fill className='w-full h-full object-cover object-center' alt='Изображение проекта' />
+                    <Image loading='lazy' src={process.env.NEXT_PUBLIC_STRAPI_API_URL + item.attributes?.image?.data.attributes?.url ?? ''} fill className='w-full h-full object-cover object-center' alt='Изображение проекта' />
                 </div>
                 <div className=" m-0 p-0 mb-5 w-full duration-300 transition-all">
                     <Link href={''} className=" text-base font-light hover:text-lg duration-300 text-gray  rounded-md transition-all p-2">{item.attributes?.autor?.data.attributes?.name}</Link>

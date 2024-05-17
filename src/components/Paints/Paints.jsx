@@ -4,7 +4,7 @@ import PaintCard from '../PaintCard/PaintCard'
 
 const Paints = () => {
   return (
-    <section className='w-full py-10' id='paints'>
+    <section className='w-full py-10' id='pictures'>
         <div className="container mx-auto">
             <div className="w-full flex items-center justify-center ">
                 <h2 className="text-black text-4xl md:text-5xl text-center mb-10">Картины</h2>
