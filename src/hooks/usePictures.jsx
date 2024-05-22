@@ -13,7 +13,6 @@ const usePictures = () => {
   const getPictures = () => {
     GlobalApi.getPictures().then(resp => {
       setPicturesList(resp.data.data)
-      console.log(resp.data.data)
     });
   }
 

@@ -13,7 +13,6 @@ const useAutors = () => {
   const getAutors = () => {
     GlobalApi.getAutors().then(resp => {
         setAutorsList(resp.data.data)
-      console.log(resp.data.data)
     });
   }
 

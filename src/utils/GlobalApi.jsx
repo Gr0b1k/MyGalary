@@ -15,9 +15,11 @@ const axiosClient = axios.create({
 // API - запрос на получение картин
 const getPictures = () => axiosClient.get('/pictures?populate=*');
 // API - запрос на получение картины
-const getSinglePaint = (id) => axiosClient.get('/pictures?filters[slug][$eqi]='+id+'&populate=*');
+const getSinglePicture = (id) => axiosClient.get('/pictures?filters[slug][$eqi]='+id+'&populate=*');
 // API - запрос на получение авторов
 const getAutors = () => axiosClient.get('/autors?populate=*');
+// API - запрос на получение автора
+const getSingleAutor = (id) => axiosClient.get('/pictures?filters[slug][$eqi]='+id+'&populate=*');
 // API - запрос на получение контактов
 const getContacts = () => axiosClient.get('/contacts?populate=*');
 // API - запрос на получение соц-сетей
@@ -32,9 +34,9 @@ const getHero = () => axiosClient.get('/heroes?populate=*');
 const getSetting = () => axiosClient.get('setting?populate[0]=Social.iconVk&populate[1]=Contact&populate[2]=Contact.icon&populate[3]=Info&populate[4]=Logo&populate[5]=Logo.icon&populate[6]=Social.iconYoutube&populate[7]=Social.iconTelegram&populate[8]=Contact.iconPhone&populate[9]=Contact.iconEmail&populate[10]=Contact.iconWork');
 export default {
     getPictures,
-    // getSinglePaint,
-    getAutors
-    // getContacts,
+    getSinglePicture,
+    getAutors,
+    getContacts
     // getSocials,
     // getReviews,
     // getAbout
