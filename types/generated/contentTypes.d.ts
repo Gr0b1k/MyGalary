@@ -362,6 +362,191 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiAutorAutor extends Schema.CollectionType {
+  collectionName: 'autors';
+  info: {
+    singularName: 'autor';
+    pluralName: 'autors';
+    displayName: '\u0410\u0432\u0442\u043E\u0440\u044B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    pictures: Attribute.Relation<
+      'api::autor.autor',
+      'manyToOne',
+      'api::picture.picture'
+    >;
+    image: Attribute.Media & Attribute.Required;
+    biografy: Attribute.RichText & Attribute.Required;
+    slug: Attribute.UID<'api::autor.autor', 'name'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::autor.autor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::autor.autor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactContact extends Schema.CollectionType {
+  collectionName: 'contacts';
+  info: {
+    singularName: 'contact';
+    pluralName: 'contacts';
+    displayName: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    description: Attribute.RichText & Attribute.Required;
+    text: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPicturePicture extends Schema.CollectionType {
+  collectionName: 'pictures';
+  info: {
+    singularName: 'picture';
+    pluralName: 'pictures';
+    displayName: '\u041A\u0430\u0440\u0442\u0438\u043D\u044B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    date: Attribute.Date;
+    history: Attribute.RichText & Attribute.Required;
+    autor: Attribute.Relation<
+      'api::picture.picture',
+      'oneToMany',
+      'api::autor.autor'
+    >;
+    image: Attribute.Media & Attribute.Required;
+    reviews: Attribute.Relation<
+      'api::picture.picture',
+      'oneToMany',
+      'api::review.review'
+    >;
+    slug: Attribute.UID<'api::picture.picture', 'name'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::picture.picture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::picture.picture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews';
+  info: {
+    singularName: 'review';
+    pluralName: 'reviews';
+    displayName: '\u041E\u0442\u0437\u044B\u0432\u044B';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    date: Attribute.Date & Attribute.Required;
+    description: Attribute.RichText & Attribute.Required;
+    isActive: Attribute.Boolean & Attribute.Required;
+    picture: Attribute.Relation<
+      'api::review.review',
+      'manyToOne',
+      'api::picture.picture'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSocialSocial extends Schema.CollectionType {
+  collectionName: 'socials';
+  info: {
+    singularName: 'social';
+    pluralName: 'socials';
+    displayName: '\u0421\u043E\u0446-\u0441\u0435\u0442\u0438';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    link: Attribute.String & Attribute.Required;
+    icon: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::social.social',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::social.social',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -788,190 +973,6 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiAutorAutor extends Schema.CollectionType {
-  collectionName: 'autors';
-  info: {
-    singularName: 'autor';
-    pluralName: 'autors';
-    displayName: '\u0410\u0432\u0442\u043E\u0440\u044B';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    pictures: Attribute.Relation<
-      'api::autor.autor',
-      'manyToOne',
-      'api::picture.picture'
-    >;
-    image: Attribute.Media & Attribute.Required;
-    biografy: Attribute.RichText & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::autor.autor',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::autor.autor',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiContactContact extends Schema.CollectionType {
-  collectionName: 'contacts';
-  info: {
-    singularName: 'contact';
-    pluralName: 'contacts';
-    displayName: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    description: Attribute.RichText & Attribute.Required;
-    text: Attribute.String & Attribute.Required;
-    image: Attribute.Media & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::contact.contact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::contact.contact',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPicturePicture extends Schema.CollectionType {
-  collectionName: 'pictures';
-  info: {
-    singularName: 'picture';
-    pluralName: 'pictures';
-    displayName: '\u041A\u0430\u0440\u0442\u0438\u043D\u044B';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    date: Attribute.Date;
-    history: Attribute.RichText & Attribute.Required;
-    autor: Attribute.Relation<
-      'api::picture.picture',
-      'oneToMany',
-      'api::autor.autor'
-    >;
-    image: Attribute.Media & Attribute.Required;
-    reviews: Attribute.Relation<
-      'api::picture.picture',
-      'oneToMany',
-      'api::review.review'
-    >;
-    slug: Attribute.UID<'api::picture.picture', 'name'> & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::picture.picture',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::picture.picture',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiReviewReview extends Schema.CollectionType {
-  collectionName: 'reviews';
-  info: {
-    singularName: 'review';
-    pluralName: 'reviews';
-    displayName: '\u041E\u0442\u0437\u044B\u0432\u044B';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    date: Attribute.Date & Attribute.Required;
-    description: Attribute.RichText & Attribute.Required;
-    isActive: Attribute.Boolean & Attribute.Required;
-    picture: Attribute.Relation<
-      'api::review.review',
-      'manyToOne',
-      'api::picture.picture'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSocialSocial extends Schema.CollectionType {
-  collectionName: 'socials';
-  info: {
-    singularName: 'social';
-    pluralName: 'socials';
-    displayName: '\u0421\u043E\u0446-\u0441\u0435\u0442\u0438';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    link: Attribute.String & Attribute.Required;
-    icon: Attribute.Media & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::social.social',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::social.social',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -982,6 +983,11 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::autor.autor': ApiAutorAutor;
+      'api::contact.contact': ApiContactContact;
+      'api::picture.picture': ApiPicturePicture;
+      'api::review.review': ApiReviewReview;
+      'api::social.social': ApiSocialSocial;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -990,11 +996,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::autor.autor': ApiAutorAutor;
-      'api::contact.contact': ApiContactContact;
-      'api::picture.picture': ApiPicturePicture;
-      'api::review.review': ApiReviewReview;
-      'api::social.social': ApiSocialSocial;
     }
   }
 }
