@@ -19,7 +19,7 @@ const getSinglePicture = (id) => axiosClient.get('/pictures?filters[slug][$eqi]=
 // API - запрос на получение авторов
 const getAutors = () => axiosClient.get('/autors?populate=*');
 // API - запрос на получение автора
-const getSingleAutor = (id) => axiosClient.get('/pictures?filters[slug][$eqi]='+id+'&populate=*');
+const getSingleAutor = (id) => axiosClient.get('/autors?filters[slug][$eqi]='+id+'&populate=*');
 // API - запрос на получение контактов
 const getContacts = () => axiosClient.get('/contacts?populate=*');
 // API - запрос на получение соц-сетей
@@ -36,9 +36,10 @@ export default {
     getPictures,
     getSinglePicture,
     getAutors,
-    getContacts
+    getSingleAutor,
+    getContacts,
     // getSocials,
-    // getReviews,
+    getReviews
     // getAbout
     // getHero
 }

@@ -15,11 +15,11 @@ const AutorCard = () => {
                     <div className="relative w-[200px] h-[200px] rounded-full overflow-hidden mb-3">
                         <Image loading='lazy' src={process.env.NEXT_PUBLIC_STRAPI_API_URL + item.attributes?.image?.data.attributes?.url ?? ''} fill className='w-full h-full object-cover object-center' alt='Изображение проекта' />
                     </div>
-                    <Link href={''} className="text-lg font-medium  duration-300 text-black hover:text-white hover:bg-black rounded-md transition-colors p-2">{item.attributes?.name}</Link>
+                    <Link href={'/autors/' + item.attributes?.slug} className="text-lg font-medium  duration-300 text-black hover:text-white hover:bg-black rounded-md transition-colors p-2">{item.attributes?.name}</Link>
                 </article>
             ) 
         })
-        :
+        : 
         [1,2,3,4].map((item, index) => {
             return (
                 <div key={index}  className="block w-full h-[350px] rounded-xl  bg-zinc-800 animate-pulse"></div>
